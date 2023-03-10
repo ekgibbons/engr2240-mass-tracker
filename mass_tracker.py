@@ -49,20 +49,21 @@ if __name__ == "__main__":
                         default="locations.txt",
                         help=("output text file with time stamps and locations "
                               "(default is 'locations.txt')"))
+    parser.add_argument("-s","--tag_size",
+                        required=True,
+                        help="size of AprilTag vertically in mm")    
     parser.add_argument("-t", "--sample_period",
                         default=2/50,
-                        help="time between image frames in seconds (default is 0.04 s")
-    parser.add_argument("--tag_height",
-                        default=20,
-                        help="size of AprilTag vertically in mm (default is 20 mm)")    
+                        help="time between image frames in seconds (default is 0.04 s)")
     
     # parse the inputs
     args = parser.parse_args()
     input_directory = args.input_directory
     output_file = args.output_file
+    tag_size = args.tag_size
     sample_period = args.sample_period # default is 2/50
                                        # (skip two frames at 50 frames/sec)
-    tag_height = args.tag_height
+
                                        
     # finds input images to process
     files = sorted(glob.glob("%s/*.tif" % input_directory))
@@ -119,7 +120,7 @@ if __name__ == "__main__":
 
                 avg_height_pixels = (left_height + right_height)/2
 
-                pixel_size = tag_height/avg_height_pixels
+                pixel_size = tag_size/avg_height_pixels
 
             center = tag[0].center
 

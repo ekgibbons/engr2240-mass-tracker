@@ -16,7 +16,7 @@ This code has a fairly straightfoward command-line interface.  You can find a he
 
 ```bash
 $ python mass_tracker.py -h
-usage: mass_tracker.py [-h] -i INPUT_DIRECTORY [-o OUTPUT_FILE] [-t SAMPLE_PERIOD] [--tag_size TAG_SIZE]
+usage: mass_tracker.py [-h] -i INPUT_DIRECTORY [-o OUTPUT_FILE] -s TAG_SIZE [-t SAMPLE_PERIOD]
 
 computes the location of the mass on a spring
 
@@ -25,10 +25,11 @@ optional arguments:
   -i INPUT_DIRECTORY, --input_directory INPUT_DIRECTORY
                         directory of tiff images
   -o OUTPUT_FILE, --output_file OUTPUT_FILE
-                        output text file with time stamps and locations
+                        output text file with time stamps and locations (default is 'locations.txt')
+  -s TAG_SIZE, --tag_size TAG_SIZE
+                        size of AprilTag vertically in mm
   -t SAMPLE_PERIOD, --sample_period SAMPLE_PERIOD
-                        time between image frames in seconds (default is 0.04 s
-  --tag_size TAG_SIZE   size of AprilTag vertically in mm (default is 20 mm)
+                        time between image frames in seconds (default is 0.04 s)
 ```
 Most of the arguments are optional have a default value if you ommit them.  The exception is the `--input_directory` option.  
 

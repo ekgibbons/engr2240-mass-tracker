@@ -60,10 +60,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
     input_directory = args.input_directory
     output_file = args.output_file
-    tag_size = args.tag_size
-    sample_period = args.sample_period # default is 2/50
-                                       # (skip two frames at 50 frames/sec)
-
+    tag_size = float(args.tag_size)
+    sample_period = float(args.sample_period) # default is 2/50
+                                              # (skip two frames at 50 frames/sec)
                                        
     # finds input images to process
     files = sorted(glob.glob("%s/*.tif" % input_directory))
@@ -83,7 +82,6 @@ if __name__ == "__main__":
         # read in and convert image
         image_color = imageio.imread(filename)
         image = rgb_to_bw(image_color)
-
         
         if k % 20 == 0:
             

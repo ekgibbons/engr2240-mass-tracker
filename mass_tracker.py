@@ -76,6 +76,18 @@ if __name__ == "__main__":
 
     # set up a time array for potentially bad frames
     time_array = np.arange(len(files))*sample_period
+
+    # set up AprilTag
+    at_detector = pupil_apriltags.Detector(
+        families="tag36h11",
+        nthreads=1,
+        quad_decimate=1.0,
+        quad_sigma=0.0,
+        refine_edges=1,
+        decode_sharpening=0.25,
+        debug=0
+    )
+
     
     for k, filename in enumerate(files):
 
@@ -88,16 +100,6 @@ if __name__ == "__main__":
             print("[INFO] working on frame %i/%i" %
                   (k, len(files)))
 
-        # set up AprilTag
-        at_detector = pupil_apriltags.Detector(
-            families="tag36h11",
-            nthreads=1,
-            quad_decimate=1.0,
-            quad_sigma=0.0,
-            refine_edges=1,
-            decode_sharpening=0.25,
-            debug=0
-        )
 
         # process the image
         tag = at_detector.detect(image)
